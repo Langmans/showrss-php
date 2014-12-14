@@ -1,1 +1,1 @@
-tis directory holds cache files.
+this directory holds cache files.
