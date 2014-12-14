@@ -1,0 +1,17 @@
+{
+    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "http://github.com/rubenvincenten/torrentphp"
+        }
+    ],
+    "require": {
+        "fastfeed/fastfeed": "*",
+        "amphp/artax": "dev-master@dev",
+        "j7mbo/torrent-php": "dev-patch-1@dev",
+        "digitalnature/php-ref": "*@dev",
+        "league/flysystem": "*",
+        "doctrine/orm": "*"
+    }
+}

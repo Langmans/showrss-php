@@ -1,0 +1,1 @@
+run cronjob.php first, then this directory will have config files in JSON format.
