@@ -13,5 +13,9 @@
         "digitalnature/php-ref": "*@dev",
         "league/flysystem": "*",
         "doctrine/orm": "*"
+    },
+
+    "autoload": {
+        "psr-0": {"": "src/"}
     }
 }
