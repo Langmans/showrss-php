@@ -3,3 +3,4 @@ composer.lock
 config/*
 cache/*
 vendor
+showrss.db

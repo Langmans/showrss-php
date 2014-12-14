@@ -24,6 +24,7 @@ Run the following commands in your terminal:
 ```
 git clone https://github.com/rubenvincenten/showrss-php.git
 composer install
+vendor\bin\doctrine orm:schema-tool:update --force
 php cronjob.php
 ```
 
@@ -40,4 +41,5 @@ Assuming you used git to checkout:
 ```
 git pull
 composer update
+vendor\bin\doctrine orm:schema-tool:update --force
 ```
