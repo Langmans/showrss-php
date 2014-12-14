@@ -15,9 +15,6 @@ Requirements:
     * If you are on windows, you can download an 
       [executable that installs composer](https://getcomposer.org/Composer-Setup.exe) 
       for you that adds the composer bin directory to the environment(`%PATH%`)
-      
-#### Optional:
-
 
 Install:
 --------
