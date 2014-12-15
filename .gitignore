@@ -4,3 +4,4 @@ config/*
 cache/*
 vendor
 showrss.db
+fastfeed_log.txt

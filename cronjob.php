@@ -4,8 +4,14 @@ if (PHP_SAPI != 'cli') {
     die('this is a console script.');
 }
 
-use FastFeed\Factory;
+use Desarrolla2\Cache\Adapter\File as FileCacheAdapter;
+use Desarrolla2\Cache\Cache;
+use FastFeed\Aggregator\RSSContentAggregator;
+use FastFeed\Aggregator\ShowRSSAggregator;
+use FastFeed\Cache\FastFeed;
 use FastFeed\Item;
+use FastFeed\Logger\Logger;
+use FastFeed\Parser\RSSParser;
 
 require __DIR__ . '/bootstrap.php';
 $em = &$entity_manager;
@@ -24,8 +30,19 @@ $url = $showrss_config['url'];
 $url .= strpos($url, '?') ? '&' : '?';
 $url .= 'user_id=' . $showrss_config['user_id'];
 
-$feed = Factory::create();
-$feed->addFeed('default', $url);
+$channel = 'showrss-php-' . $showrss_config['user_id'];
+//$feed = Factory::create();
+
+$feed = new FastFeed(new \Guzzle\Http\Client(), new Logger('fastfeed_log.txt'));
+$cache_adapter = new FileCacheAdapter(__DIR__.'/cache/fastfeed');
+$cache_adapter->setOption('ttl', $showrss_config['ttl']);
+$cache = new Cache($cache_adapter);
+$feed->setCache($cache);
+$parser = new RSSParser();
+$parser->pushAggregator(new ShowRSSAggregator());
+$parser->pushAggregator(new RSSContentAggregator());
+$feed->pushParser($parser);
+$feed->addFeed($channel, $url);
 
 $show_regex = '@
 ^
@@ -58,12 +75,10 @@ x
     )
 )?
 (
-    \s
     (?<quality1>
         (720|1080)p|x264
     )
 |
-    \s
     (?<repack1>
         REPACK|PROPER
     )
@@ -86,12 +101,12 @@ $show_repo = $em->getRepository('Show');
 $episode_repo = $em->getRepository('Episode');
 
 /** @var Item $item */
-foreach ($feed->fetch() as $item) {
+foreach ($feed->fetch($channel) as $item) {
     $name = $item->getName();
     if (preg_match($show_regex,
         $name, $matches)) {
 
-        echo $name,PHP_EOL;
+        echo $name, PHP_EOL;
 
         foreach ($matches as $k => $v) {
             if (is_numeric($k)) {
@@ -126,24 +141,23 @@ foreach ($feed->fetch() as $item) {
             $matches['quality'] = $matches['quality2'];
         }
         unset($matches['quality1'], $matches['quality2']);
-        echo json_encode($matches),PHP_EOL;
+        echo json_encode($matches), PHP_EOL;
 
         /**
          * @var Show $show
          */
+        $showname = $item->getExtra('showname') ?: $matches['show'];
         // to prevent reinserting
-        if (isset($show_objects[$matches['show']])) {
-            $show = $show_objects[$matches['show']];
+        if (isset($show_objects[$showname])) {
+            $show = $show_objects[$showname];
         } else {
-            if (!($show = $show_repo->findOneBy(array(
-                'name' => $matches['show']
-            )))
-            ) {
-                $show = Show::create(array(
-                    'name' => $matches['show']
-                ));
+            $fields = array(
+                'name' => $showname
+            );
+            if (!($show = $show_repo->findOneBy($fields))) {
+                $show = Show::create($fields);
             }
-            $show_objects[$matches['show']] = $show;
+            $show_objects[$showname] = $show;
         }
 
         /**
@@ -158,6 +172,7 @@ foreach ($feed->fetch() as $item) {
         if (isset($show_objects[$episode_string])) {
             $episode = $show_objects[$episode_string];
         } else {
+            // If show isnt saved, or if episode cant be found
             if (!$show->getId() ||
                 !($episode = $episode_repo->findOneBy(array(
                     'show_id' => $show->getId(),
@@ -174,9 +189,7 @@ foreach ($feed->fetch() as $item) {
             $show_objects[$episode_string] = $episode;
         }
         $episode->setName($matches['name']);
-
         $show->addEpisode($episode);
-
         $em->persist($show);
 
     } else {

@@ -1,21 +1,34 @@
 {
-    "minimum-stability": "dev",
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "http://github.com/rubenvincenten/torrentphp"
-        }
-    ],
-    "require": {
-        "fastfeed/fastfeed": "*",
-        "amphp/artax": "dev-master@dev",
-        "j7mbo/torrent-php": "dev-patch-1@dev",
-        "digitalnature/php-ref": "*@dev",
-        "league/flysystem": "*",
-        "doctrine/orm": "*"
+  "minimum-stability": "dev",
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "http://github.com/rubenvincenten/torrentphp"
     },
-
-    "autoload": {
-        "psr-0": {"": "src/"}
+    {
+      "type": "vcs",
+      "url": "http://github.com/rubenvincenten/fastfeed"
     }
+  ],
+  "disabled-repos": [
+    {
+      "comment": "for development :)",
+      "type": "vcs",
+      "url": "../fastfeed"
+    }
+  ],
+  "require": {
+    "fastfeed/fastfeed": "dev-showrss",
+    "amphp/artax": "dev-master@dev",
+    "j7mbo/torrent-php": "dev-patch-1@dev",
+    "digitalnature/php-ref": "*@dev",
+    "league/flysystem": "*",
+    "doctrine/orm": "*",
+    "monolog/monolog": "*"
+  },
+  "autoload": {
+    "psr-0": {
+      "": "src/"
+    }
+  }
 }

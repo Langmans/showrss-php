@@ -11,7 +11,7 @@ $isDevMode = true;
 $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__ . "/src"), $isDevMode, 'proxies', null, false);
 // If we dont have any means of normal caching, set it to filesystem!
 if (!$isDevMode && $config->getQueryCacheImpl() instanceof ArrayCache) {
-    $cache = new FilesystemCache(__DIR__ . '/cache/');
+    $cache = new FilesystemCache(__DIR__ . '/cache/doctrine');
     $config->setMetadataCacheImpl($cache);
     $config->setQueryCacheImpl($cache);
     $config->setResultCacheImpl($cache);
