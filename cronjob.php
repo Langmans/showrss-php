@@ -177,7 +177,7 @@ foreach ($feed->fetch($channel) as $item) {
         if (isset($show_objects[$episode_string])) {
             $episode = $show_objects[$episode_string];
         } else {
-            // If show isnt saved, or if episode cant be found
+            // If show isn't saved, or if episode cant be found
             if (!$show->getId() ||
                 !($episode = $episode_repo->findOneBy(array(
                     'show_id' => $show->getId(),
