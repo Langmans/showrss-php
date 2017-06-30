@@ -7,7 +7,7 @@ class Config
     private $sConfigDirectory;
     private $aConfig = [];
 
-    public function setConfigDir($sConfigLocation = __DIR__ . 'config.json')
+    public function setConfigDir($sConfigLocation = __DIR__ . '/../config/config.json')
     {
         return (bool)($this->sConfigDirectory = $sConfigLocation);
     }
