@@ -1,4 +1,7 @@
 <?php
+
+namespace rubenvincenten\ShowRss;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**

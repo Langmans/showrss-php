@@ -1,5 +1,7 @@
 <?php
 
+namespace rubenvincenten\ShowRss;
+
 use Doctrine\Common\Inflector\Inflector;
 
 /**
