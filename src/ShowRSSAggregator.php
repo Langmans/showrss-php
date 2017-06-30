@@ -43,6 +43,6 @@ class ShowRSSAggregator extends Aggregator\AbstractAggregator implements Aggrega
      */
     public function getValue(\DOMElement $node, $tagName)
     {
-        return $this->getNodeValueByTagNameNS($node, 'http://showrss.info/', $tagName);
+        return $this->getNodeValueByTagNameNS($node, 'https://showrss.info/', $tagName);
     }
 }
