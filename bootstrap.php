@@ -12,7 +12,7 @@ $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__ . "/src"), 
 
 // If we don't have any means of normal caching, set it to filesystem!
 if (!$isDevMode && $config->getQueryCacheImpl() instanceof ArrayCache) {
-    $cache = new FilesystemCache(__DIR__ . '/cache/doctrine');
+    $cache = new FilesystemCache(__DIR__ . '/resources/doctrine');
     $config->setMetadataCacheImpl($cache);
     $config->setQueryCacheImpl($cache);
     $config->setResultCacheImpl($cache);
@@ -21,7 +21,7 @@ if (!$isDevMode && $config->getQueryCacheImpl() instanceof ArrayCache) {
 
 $connection = [
     'driver' => 'pdo_sqlite',
-    'path' => __DIR__ . '/resources/sqlite.db',
+    'path' => __DIR__ . '/resources/database/sqlite.db',
 ];
 
 // Obtaining the entity manager

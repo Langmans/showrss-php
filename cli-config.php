@@ -1,7 +1,7 @@
 <?php
 
 if (PHP_SAPI != 'cli') {
-    die('this is a console script.');
+    die('This is a console script.');
 }
 
 // Replace with file to your own project bootstrap
