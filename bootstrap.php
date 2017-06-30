@@ -9,7 +9,8 @@ require_once __DIR__ . '/vendor/autoload.php';
 $isDevMode = true;
 
 $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__ . "/src"), $isDevMode, 'proxies', null, false);
-// If we dont have any means of normal caching, set it to filesystem!
+
+// If we don't have any means of normal caching, set it to filesystem!
 if (!$isDevMode && $config->getQueryCacheImpl() instanceof ArrayCache) {
     $cache = new FilesystemCache(__DIR__ . '/cache/doctrine');
     $config->setMetadataCacheImpl($cache);
@@ -18,9 +19,10 @@ if (!$isDevMode && $config->getQueryCacheImpl() instanceof ArrayCache) {
     $config->setAutoGenerateProxyClasses(true);
 }
 
-$connection = array(
+$connection = [
     'driver' => 'pdo_sqlite',
-    'path' => __DIR__ . '/showrss.db',
-);
-// obtaining the entity manager
+    'path' => __DIR__ . '/resources/sqlite.db',
+];
+
+// Obtaining the entity manager
 $entity_manager = \Doctrine\ORM\EntityManager::create($connection, $config);
