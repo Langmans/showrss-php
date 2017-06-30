@@ -1,7 +1,7 @@
 <?php
 
 if (PHP_SAPI != 'cli') {
-    die('this is a console script.');
+    die('This is a console script.');
 }
 
 use Desarrolla2\Cache\Adapter\File as FileCacheAdapter;
@@ -20,7 +20,7 @@ require __DIR__ . '/bootstrap.php';
 $em = &$entity_manager;
 
 $config = new Config();
-$config->setConfigDir(__DIR__ . '/config/showrss.json');
+$config->setConfigDir(__DIR__ . '/config/config.json');
 
 $config->read([
     'user_id' => 0,
@@ -37,8 +37,8 @@ $sUrl = str_replace('{user_id}', $config->item('user_id'), $sUrl);
 
 $channel = 'showrss-php-' . $config->item('user_id');
 
-$feed = new FastFeed(new \Guzzle\Http\Client(), new Logger('fastfeed_log.txt'));
-$cache_adapter = new FileCacheAdapter(__DIR__ . '/cache/fastfeed');
+$feed = new FastFeed(new \Guzzle\Http\Client(), new Logger(__DIR__ . '/resources/logs/fast_feed.log'));
+$cache_adapter = new FileCacheAdapter(__DIR__ . '/resources/cache');
 $cache_adapter->setOption('ttl', $config->item('ttl'));
 $cache = new Cache($cache_adapter);
 $feed->setCache($cache);
