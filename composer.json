@@ -1,34 +1,21 @@
 {
+  "name": "rubenvincenten/showrss-php",
+  "description": "This is tool that adds torrents to deluge/transmission from your showrss feed.",
+  "type": "project",
   "minimum-stability": "dev",
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "http://github.com/rubenvincenten/torrentphp"
-    },
-    {
-      "type": "vcs",
-      "url": "http://github.com/rubenvincenten/fastfeed"
-    }
-  ],
-  "disabled-repos": [
-    {
-      "comment": "for development :)",
-      "type": "vcs",
-      "url": "../fastfeed"
-    }
-  ],
+  "license": "proprietary",
   "require": {
-    "fastfeed/fastfeed": "dev-showrss",
-    "amphp/artax": "dev-master@dev",
-    "j7mbo/torrent-php": "dev-patch-1@dev",
-    "digitalnature/php-ref": "*@dev",
-    "league/flysystem": "*",
-    "doctrine/orm": "*",
-    "monolog/monolog": "*"
+    "fastfeed/fastfeed": "0.4.*",
+    "amphp/artax": "1.0.*",
+    "j7mbo/torrent-php": "dev-master",
+    "digitalnature/php-ref": "1.2.*",
+    "league/flysystem": "1.0.*",
+    "doctrine/orm": "2.5.*",
+    "monolog/monolog": "1.23.*"
   },
   "autoload": {
-    "psr-0": {
-      "": "src/"
+    "psr-4": {
+      "rubenvincenten\\ShowRss\\": "src/"
     }
   }
 }
