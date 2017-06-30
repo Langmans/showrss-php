@@ -1,6 +1,6 @@
 {
   "name": "rubenvincenten/showrss-php",
-  "description": "This is tool that adds torrents to deluge/transmission from your showrss feed.",
+  "description": "This is tool that adds torrents to Deluge/Transmission from your ShowRSS feed.",
   "type": "project",
   "minimum-stability": "dev",
   "license": "proprietary",

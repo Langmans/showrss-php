@@ -1,6 +1,6 @@
 # ShowRSS PHP
 
-This is tool that adds torrents to deluge/transmission from your [ShowRSS][ShowRSS] feed. 
+This is tool that adds torrents to Deluge/Transmission from your [ShowRSS][ShowRSS] feed. 
 After downloading is complete, it will be moved and sorted to a directory of your choice.
 
 **This is under heavy development, do not use if you don't know what you're doing!**
@@ -13,7 +13,7 @@ After downloading is complete, it will be moved and sorted to a directory of you
     * You can also download composer.phar to the project directory.
     * If you are on windows, you can download an 
       [executable that installs composer][composer_exe] 
-      for you that adds the composer bin directory to the environment(`%PATH%`)
+      for you that adds the composer bin directory to the environment (`%PATH%`)
 
 ### Install:
 
@@ -26,7 +26,7 @@ vendor\bin\doctrine orm:schema-tool:update --force
 php cronjob.php
 ```
 
-After this, default configuration will be available in /config/. Add your ShowRss user_id there.
+After this, default configuration will be available in `config/`. Add your ShowRss user_id there.
 
 Next, use Task Scheduler (windows) or [Cron Tab] to schedule updating. [ShowRSS][ShowRSS] by default updates every half hour. 
 You can also set up a task/cron script for when you login or boot your computer/server.
