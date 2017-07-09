@@ -1,7 +1,1 @@
-.idea
-composer.lock
-config/*
-cache/*
-vendor
-showrss.db
-fastfeed_log.txt
+vendor/
